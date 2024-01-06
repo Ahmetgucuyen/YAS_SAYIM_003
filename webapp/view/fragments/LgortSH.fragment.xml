@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id="idSelectDialogLgort" title="Depo Yeri" items="{ path: '/LgortSH2Set', sorter: { path: 'Lgort', descending: false } }"
+		search="_searchLgortSH" liveChange="_searchLgortSH" confirm="_confirmLgortSH" cancel="_confirmVbSH">
+		<StandardListItem title="{Lgort}" description="{Lgobe}" iconDensityAware="false" iconInset="false" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

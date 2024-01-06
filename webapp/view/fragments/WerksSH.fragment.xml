@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id="idSelectDialogWerks" title="Üretim Yeri" items="{ path: '/WerksSH2Set', sorter: { path: 'Werks', descending: false } }"
+		search="_searchWerksSH" liveChange="_searchWerksSH" confirm="_confirmWerksSH" cancel="_confirmVbSH">
+		<StandardListItem title="{Werks}" description="{Name1}" iconDensityAware="false" iconInset="false" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,13 @@
+.roundClass .sapMBtnInner {
+    margin: -10px -10px -10px -10px;
+    cursor: pointer;
+    position: fixed;
+    z-index: 100;
+    border-radius: 50px;
+}
+
+.myCustomHeight {
+    height: 50%;
+}
+
+/* Enter your custom styles here */

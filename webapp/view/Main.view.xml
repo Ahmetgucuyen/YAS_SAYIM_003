@@ -1,0 +1,67 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	controllerName="app.YAS_SAYIM_003.controller.Main" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="pages" title="{i18n>title}">
+					<customHeader>
+						<Bar>
+							<contentLeft>
+								<Label text="Şirket Kodu"></Label>
+								<Input id="BukrsInput" enabled="true" editable="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onValueHelpBukrs"
+									liveChange="magazaKoduLiveChange" maxLength="10" width="11em"/>
+							</contentLeft>
+							<contentMiddle>
+								<Label text="Üretim Yeri"></Label>
+								<Input id="WerksInput" value="" enabled="true" editable="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onValueHelpWerks"
+									width="11em"/>
+								<Label text="Depo Yeri"></Label>
+								<Input id="LgortInput" value="" enabled="true" editable="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onValueHelpLgort"
+									width="11em"/>
+								<Label text="Durum "></Label>
+								<Select id="idStatu" valueState="None" editable="true" enabled="true" icon="empty string" textAlign="Initial" textDirection="Inherit"
+									forceSelection="false">
+									<items>
+										<core:Item key="" text="Hepsi"/>
+										<core:Item key="01" text="Yeni Talep"/>
+										<core:Item key="02" text="Sayım Devam Ediyor"/>
+										<core:Item key="03" text="Sayım Tamamlandı"/>
+									</items>
+								</Select>
+							</contentMiddle>
+							<contentRight>
+								<Button id="raporgetirButton" width="150px" icon="sap-icon://search" text="Ara" type="Emphasized" press="onSearch" tooltip="Sonuçları Getir"
+									class="sapUiTinyMarginBegin"/>
+							</contentRight>
+						</Bar>
+					</customHeader>
+					<content>
+						<!--		updateFinished=".onUpdateFinished" selectionChange=".onSelectionChange" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"-->
+						<List id="list" width="auto" class="sapFDynamicPageAlignContent sapUiMediumMarginTop" busyIndicatorDelay="{masterView>/delay}"
+							noDataText="{masterView>/noDataText}" mode="SingleSelectMaster" growing="true" growingThreshold="10" items="{ path: '/TalepListesi1Set' }"
+							selectionChange=".onSelectionChange">
+							<items>
+								<ObjectListItem type="Navigation" press=".onSelectionChange" title="Sayım No: { path: 'SayimId', formatter: '.formatter.sayimIdFormatter' }"
+									intro="">
+									<firstStatus>
+										<ObjectStatus
+											text="{= ${Statu} === '01' ? 'Yeni Talep' : ${Statu} === '02' ? 'Sayım Devam Ediyor' : ${Statu} === '03' ? 'Sayım Tamamlandı' : ''}"
+											state="{path: 'Statu', formatter: '.formatter.confirmedState'}"/>
+									</firstStatus>
+									<secondStatus>
+										<ObjectStatus text="{path:'Tarih', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' , UTC: true }}"/>
+									</secondStatus>
+									<ObjectAttribute id="bukrs" text="Şirket Kodu: {Bukrs} ({Butxt})"/>
+									<ObjectAttribute id="kostl" text="Üretim Yeri: {Werks} ({Name1})"/>
+									<ObjectAttribute id="pernr" text="Depo Yeri: {Lgort} ({Lgobe})"/>
+									<ObjectAttribute id="period"
+										text="Periyot: {= ${Period} === '01' ? 'Aylık' : ${Period} === '02' ? '3 Aylık' : ${Period} === '03' ? '6 Aylık' : ${Period} === '04' ? 'Yıllık' : ''}"/>
+								</ObjectListItem>
+							</items>
+						</List>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

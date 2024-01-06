@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id="idSelectDialogMatnr" title="Malzeme Kodu" items="{ path: '/MatnrSHSet', sorter: { path: 'Matnr', descending: false } }"
+		search="_searchMatnrSH" liveChange="_searchMatnrSH" confirm="_confirmMatnrSH" cancel="_confirmVbelnSH">
+		<StandardListItem title="{Matnr}" description="{Maktx}" iconDensityAware="false" iconInset="false" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

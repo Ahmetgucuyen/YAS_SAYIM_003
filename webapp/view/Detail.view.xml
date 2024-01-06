@@ -1,0 +1,131 @@
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:table="sap.ui.table" controllerName="app.YAS_SAYIM_003.controller.Detail" height="100%">
+	<App id="app" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+		<Page id="Detail" showHeader="true" title="{viewModel>/sayimId} Numaralı Sayım Raporu" showNavButton="true"
+			navButtonPress="onPressedNavToMain" showFooter="false" class="positionAbsolute sapUiResponsiveContentPadding" enableScrolling="true">
+			<content>
+				<VBox>
+					<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="SayimKayitSet" persistencyKey="SmartFilter_Explored">
+						<smartFilterBar:controlConfiguration>
+							<smartFilterBar:ControlConfiguration key="Matnr" preventInitialDataFetchInValueHelpDialog="false">
+								<smartFilterBar:customControl>
+									<!--<ComboBox id="idMatnr" items="{ path: '/SayimKayitSet'}">-->
+									<!--	<core:ListItem key="{idMatnr}" text="{idMatnr} "/>-->
+									<!--</ComboBox>-->
+									<Input id="idMatnr" showValueHelp="true" valueHelpRequest="onValueHelpMatnr"/>
+								</smartFilterBar:customControl>
+							</smartFilterBar:ControlConfiguration>
+							<smartFilterBar:ControlConfiguration key="Uname" preventInitialDataFetchInValueHelpDialog="false">
+								<smartFilterBar:customControl>
+									<Input id="idUname"/>
+								</smartFilterBar:customControl>
+							</smartFilterBar:ControlConfiguration>
+						</smartFilterBar:controlConfiguration>
+						<!--<smartFilterBar:layoutData>-->
+						<!--	<FlexItemData shrinkFactor="0"/>-->
+						<!--</smartFilterBar:layoutData>-->
+					</smartFilterBar:SmartFilterBar>
+					<smartTable:SmartTable smartVariant="pageVariantCMGiris" showTablePersonalisation="true" tableType="Table"
+						beforeRebindTable="onBeforeRebindTable" selectionMode="Single" app:dateFormatSettings='\{"pattern":"dd.MM.yyyy"\}' id="LineItemsSmartTable"
+						entitySet="SayimKayitSet" smartFilterId="smartFilterBar" showFullScreenButton="true" useExportToExcel="true" beforeExport="onBeforeExport"
+						useVariantManagement="true" useTablePersonalisation="true" header="Line Items" showRowCount="true"
+						persistencyKey="SmartTableAnalytical_Explored" demandPopin="true" class="sapUiSizeCompact" enableAutoColumnWidth="true" editTogglable="true">
+						<table:Table id="idTableCMMGirisRaporlama" selectionMode="Multi" visibleRowCount="10">
+							<table:columns>
+								<table:Column width="9rem" id="SayimIdId">
+									<table:customData>
+										<core:CustomData key="p13nData" value='\{"columnKey": "SayimId", "leadingProperty": "SayimId","columnIndex":"0"}'/>
+									</table:customData>
+									<Text text="Sayim No" wrapping="false"/>
+									<table:template>
+										<Text text="{ path: 'SayimId', formatter: '.sayimFormatter' }"/>
+									</table:template>
+								</table:Column>
+								<table:Column width="9rem" id="MatnrId">
+									<table:customData>
+										<core:CustomData key="p13nData" value='\{"columnKey": "Matnr", "leadingProperty": "Matnr","columnIndex":"1"}'/>
+									</table:customData>
+									<Text text="Malzeme Kodu" wrapping="false"/>
+									<table:template>
+										<Text text="{Matnr}"/>
+									</table:template>
+								</table:Column>
+								<table:Column width="12rem" id="MaktxId">
+									<table:customData>
+										<core:CustomData key="p13nData" value='\{"columnKey": "Maktx", "leadingProperty": "Maktx","columnIndex":"2"}'/>
+									</table:customData>
+									<Text text="Malzeme Tanım" wrapping="false"/>
+									<table:template>
+										<Text text="{Maktx}"/>
+									</table:template>
+								</table:Column>
+								<table:Column width="9rem" id="AdetId">
+									<table:customData>
+										<core:CustomData key="p13nData" value='\{"columnKey": "Adet", "leadingProperty": "Adet","columnIndex":"3"}'/>
+									</table:customData>
+									<Text text="Adet" wrapping="false"/>
+									<table:template>
+										<Text text="{Adet}"/>
+									</table:template>
+								</table:Column>
+								<!--BARKOD & BUTTON-->
+								<table:Column width="9rem" id="TarihId">
+									<table:customData>
+										<core:CustomData key="p13nData" value='\{"columnKey": "Tarih", "leadingProperty": "Tarih","columnIndex":"4"}'/>
+									</table:customData>
+									<Text text="Tarih" wrapping="false"/>
+									<table:template>
+										<Text text="{path:'Tarih', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' , UTC: true }, templateShareable:false}"/>
+									</table:template>
+								</table:Column>
+								<table:Column width="9rem" id="SaatId">
+									<table:customData>
+										<core:CustomData key="p13nData" value='\{"columnKey": "Saat", "leadingProperty": "Saat","columnIndex":"5"}'/>
+									</table:customData>
+									<Text text="Saat" wrapping="false"/>
+									<table:template>
+										<Text
+											text="{path:'Saat/ms', type:'sap.ui.model.type.Time', formatOptions: {UTC: true , source : { pattern : 'timestamp'}, pattern : 'HH:mm:ss'}, templateShareable:false}"/>
+									</table:template>
+								</table:Column>
+								<table:Column width="9rem" id="UnameId">
+									<table:customData>
+										<core:CustomData key="p13nData" value='\{"columnKey": "Uname", "leadingProperty": "Uname","columnIndex":"6"}'/>
+									</table:customData>
+									<Text text="Uname" wrapping="false"/>
+									<table:template>
+										<Text text="{Uname}"/>
+									</table:template>
+								</table:Column>
+								<!--<table:Column width="3rem" id="Fark">-->
+								<!--	<table:customData>-->
+								<!--		<core:CustomData key="p13nData" value='\{"columnKey": "Adet", "leadingProperty": "Adet","columnIndex":"7"}'/>-->
+								<!--	</table:customData>-->
+								<!--	<Text text="Adet" wrapping="false"/>-->
+								<!--	<table:template>-->
+								<!--<Text text="{Adet}"/>-->
+								<!--		<core:Icon text="{Adet}" src="{= ${Adet} === '1' ? 'sap-icon://accept' : ${Adet} === '0' ? 'sap-icon://alert' : '' }"-->
+								<!--			color="{= ${Adet} === '1' ? 'E69A17' : ${Adet} === '0' ? 'E69A17' : '' }"></core:Icon>-->
+								<!--	</table:template>-->
+								<!--</table:Column>-->
+								<table:Column width="9rem" id="FarkId">
+									<table:customData>
+										<core:CustomData key="p13nData" value='\{"columnKey": "Fark", "leadingProperty": "Fark","columnIndex":"7"}'/>
+									</table:customData>
+									<Text text="Stok Durumu" wrapping="false"/>
+									<table:template>
+										<Text text="{Fark}"/>
+									</table:template>
+								</table:Column>
+							</table:columns>
+						</table:Table>
+					</smartTable:SmartTable>
+					<!--<contentRight>-->
+					<!-- Footer sağ tarafındaki içerik -->
+					<Button text="BAPI" press="onTamamla" type="Emphasized"/>
+					<!--</contentRight>-->
+				</VBox>
+			</content>
+		</Page>
+	</App>
+</mvc:View>

@@ -1,0 +1,20 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="/sap/opu/odata/sap/YAS_SAYIM_SRV/$metadata">
+		<edmx:Include Alias="Metadata" Namespace="YAS_SAYIM_SRV"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470968/UI.xml?api=v2">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="YAS_SAYIM_003.Annotations.annotation0.YAS_SAYIM_SRV">
+			<Annotations Target="Metadata.SayimKayit">
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>Matnr</PropertyPath>
+						<PropertyPath>Uname</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
